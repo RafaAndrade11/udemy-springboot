@@ -4,7 +4,6 @@
 package br.com.randrade.services;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.atomic.AtomicLong;
 import java.util.logging.Logger;
@@ -46,6 +45,23 @@ public class PersonServices {
 		return person;
 	}
 	
+	public Person createPerson(Person person) {
+		logger.info("Creating one person!");
+		
+		return person;
+	}
+	
+	public Person updatePerson(Person person) {
+		logger.info("Updating one person!");
+		
+		return person;
+	}
+	
+	public void deletePerson(String id) {
+		
+		logger.info("Deleting one person!");
+		
+	}
 	private Person mockPerson(int i) {
 		
 		Person person = new Person();
