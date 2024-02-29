@@ -15,10 +15,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
-import br.com.randrade.model.Person;
+import br.com.randrade.data.vo.v1.PersonVO;
 import br.com.randrade.services.PersonServices;
 
 /**
@@ -32,7 +31,7 @@ public class PersonController {
 	private PersonServices personServices;
 	
 	@GetMapping(value = "/{id}")
-	public Person findById(@PathVariable(value = "id") Long id) {
+	public PersonVO findById(@PathVariable(value = "id") Long id) {
 		
 		return personServices.findById(id);
 	}
@@ -47,20 +46,20 @@ public class PersonController {
 	
 	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person createPerson(@RequestBody Person person) {
+	public PersonVO createPerson(@RequestBody PersonVO person) {
 		
 		return personServices.createPerson(person);
 	}
 	
 	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
 			produces = MediaType.APPLICATION_JSON_VALUE)
-	public Person updatePerson(@RequestBody Person person) {
+	public PersonVO updatePerson(@RequestBody PersonVO person) {
 		
 		return personServices.updatePerson(person);
 	}
 	
 	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-	public List<Person> findAll(){
+	public List<PersonVO> findAll(){
 		
 		return personServices.findAll();
 	}	
