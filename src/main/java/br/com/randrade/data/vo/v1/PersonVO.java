@@ -6,10 +6,12 @@ package br.com.randrade.data.vo.v1;
 import java.io.Serializable;
 import java.util.Objects;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
 /**
  * 
  */
-
+@JsonPropertyOrder({"id", "firsName", "lastName", "address", "gender"})
 public class PersonVO implements Serializable{
 
 	private static final long serialVersionUID = 1L;
