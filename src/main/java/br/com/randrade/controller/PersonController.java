@@ -29,46 +29,35 @@ import br.com.randrade.services.PersonServices;
 public class PersonController {
 
 	@Autowired
-	private PersonServices personServices;
-	
-	@GetMapping(value = "/{id}", produces = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO findById(@PathVariable(value = "id") Long id) {
-		
-		return personServices.findById(id);
-	}
-	
-	@DeleteMapping(value = "/{id}",
-			produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<?> deletePerson(@PathVariable(value = "id") Long id) {
-		
-		personServices.deletePerson(id);
-		return ResponseEntity.noContent().build();
-	}
-	
-	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
-			consumes = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO createPerson(@RequestBody PersonVO person) {
-		
-		return personServices.createPerson(person);
-	}
-	
-	@PostMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
-			consumes = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVOV2 createPersonV2(@RequestBody PersonVOV2 person) {
-		
-		return personServices.createPersonV2(person);
+	private PersonServices service;
+
+	@GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+	public List<PersonVO> findAll() {
+		return service.findAll();
 	}
 
-	@PutMapping(produces = { "application/json", "application/xml", "application/x-yaml" },
-			consumes = { "application/json", "application/xml", "application/x-yaml" })
-	public PersonVO updatePerson(@RequestBody PersonVO person) {
-		
-		return personServices.updatePerson(person);
+	@GetMapping(value = "/{id}",
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVO findById(@PathVariable(value = "id") Long id) {
+		return service.findById(id);
 	}
-	
-	@GetMapping(produces = { "application/json", "application/xml", "application/x-yaml" })
-	public List<PersonVO> findAll(){
-		
-		return personServices.findAll();
-	}	
+
+	@PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVO create(@RequestBody PersonVO person) {
+		return service.createPerson(person);
+	}
+
+	@PutMapping(consumes = MediaType.APPLICATION_JSON_VALUE,
+			produces = MediaType.APPLICATION_JSON_VALUE)
+	public PersonVO update(@RequestBody PersonVO person) {
+		return service.updatePerson(person);
+	}
+
+
+	@DeleteMapping(value = "/{id}")
+	public ResponseEntity<?> delete(@PathVariable(value = "id") Long id) {
+		service.deletePerson(id);
+		return ResponseEntity.noContent().build();
+	}
 }
