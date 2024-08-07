@@ -1,5 +1,6 @@
 package br.com.randrade.config;
 
+import br.com.randrade.serializationConverter.YamlJackson2HttpMessageConverter;
 import org.springframework.beans.factory.config.YamlProcessor;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.http.MediaType;
@@ -12,7 +13,6 @@ import java.util.List;
 @Configuration
 public class WebConfig implements WebMvcConfigurer {
     private static final MediaType MEDIA_TYPE_APPLICATION_YML = MediaType.valueOf("application/x-yaml");
-
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.favorParameter(false)
